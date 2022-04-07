@@ -62,7 +62,7 @@ public class OrderBook {
     public String toString() {
         return "OrderBook{" +
                 "name='" + user_name + '\'' +
-                ", location='" + date + '\'' +
+                ", date='" + date + '\'' +
                 ", laundryType='" + laundryType + '\'' +
                 ", laundryType='" + telephoneNumber + '\'' +
                 ", telephoneNumber=" + email +

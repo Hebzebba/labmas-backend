@@ -4,7 +4,6 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.laundry.laundryapp.model.OrderBook;
-import com.laundry.laundryapp.response.OrderResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,13 +14,13 @@ import java.util.concurrent.ExecutionException;
 public class OrderService {
 
     public List getOrders() throws ExecutionException, InterruptedException {
-        List<OrderResponse> response = new ArrayList<>();
+        List<OrderBook> response = new ArrayList<>();
             Firestore db = FirestoreClient.getFirestore();
             ApiFuture<QuerySnapshot> query = db.collection("orders").get();
             QuerySnapshot querySnapshot = query.get();
             List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
            for (QueryDocumentSnapshot data : documents){
-               response.add(data.toObject(OrderResponse.class));
+               response.add(data.toObject(OrderBook.class));
            }
         return response;
     }
