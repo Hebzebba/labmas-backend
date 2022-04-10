@@ -4,6 +4,8 @@ public class LaundryOwners {
     private String fullName;
     private String email;
     private String contact;
+    private String date;
+    private String laundryName;
     private double longitude;
     private double latitude;
 
@@ -48,5 +50,21 @@ public class LaundryOwners {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getLaundryName() {
+        return laundryName;
+    }
+
+    public void setLaundryName(String laundryName) {
+        this.laundryName = laundryName;
     }
 }
