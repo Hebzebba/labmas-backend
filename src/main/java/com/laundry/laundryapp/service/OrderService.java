@@ -56,7 +56,7 @@ public class OrderService {
                 .document(email)
                 .delete();
         List<String> response = new ArrayList<>();
-        response.add("Order booked");
+        response.add("User deleted");
         response.add(query.get().getUpdateTime().toString());
         return response;
     }

@@ -21,8 +21,8 @@ public class OrderController {
     }
 
     @GetMapping("/order")
-    public Object getOrder(@RequestParam String user_name) throws ExecutionException, InterruptedException {
-        return orderService.getOrder(user_name);
+    public Object getOrder(@RequestParam String email) throws ExecutionException, InterruptedException {
+        return orderService.getOrder(email);
     }
 
     @PostMapping("/order")
@@ -31,7 +31,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/order/delete")
-    public List deleteOrder(@RequestParam String user_name) throws ExecutionException, InterruptedException {
-        return orderService.deleteOrder(user_name);
+    public List deleteOrder(@RequestParam String email) throws ExecutionException, InterruptedException {
+        return orderService.deleteOrder(email);
     }
 }
