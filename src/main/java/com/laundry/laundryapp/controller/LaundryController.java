@@ -1,7 +1,7 @@
 package com.laundry.laundryapp.controller;
 
-import com.laundry.laundryapp.model.LaundryOwners;
-import com.laundry.laundryapp.service.LaundryOwnerService;
+import com.laundry.laundryapp.model.Laundry;
+import com.laundry.laundryapp.service.LaundryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,28 +11,32 @@ import java.util.concurrent.ExecutionException;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin("*")
-public class LaundryOwnerController {
+public class LaundryController {
 
     @Autowired
-    LaundryOwnerService laundryOwnerService;
+    LaundryService laundryService;
 
     @GetMapping("/owners")
     public List getOwners() throws ExecutionException, InterruptedException {
-        return laundryOwnerService.getOwners();
+        return laundryService.getOwners();
     }
 
     @GetMapping("/owner")
     public Object getOrder(@RequestParam String email) throws ExecutionException, InterruptedException {
-        return laundryOwnerService.getOwner(email);
+        return laundryService.getOwner(email);
+    }
+    @GetMapping("/laundry-info")
+    public List getLaundryInfo() throws ExecutionException, InterruptedException {
+        return laundryService.getLaundryData();
     }
 
     @PostMapping("/owner/register")
-    public List order(@RequestBody LaundryOwners laundryOwners) throws ExecutionException, InterruptedException {
-        return laundryOwnerService.addOwner(laundryOwners);
+    public List order(@RequestBody Laundry laundry) throws ExecutionException, InterruptedException {
+        return laundryService.addOwner(laundry);
     }
 
     @DeleteMapping("/owner/delete")
     public List deleteOrder(@RequestParam String email) throws ExecutionException, InterruptedException {
-        return laundryOwnerService.deleteOwner(email);
+        return laundryService.deleteOwner(email);
     }
 }

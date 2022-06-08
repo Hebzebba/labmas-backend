@@ -1,15 +1,16 @@
 package com.laundry.laundryapp.model;
 
-public class LaundryOwners {
+public class Laundry {
     private String fullName;
     private String email;
     private String contact;
+    private String info;
     private String date;
     private String laundryName;
     private double longitude;
     private double latitude;
 
-    public LaundryOwners() {
+    public Laundry() {
     }
 
     public String getFullName() {
@@ -66,5 +67,13 @@ public class LaundryOwners {
 
     public void setLaundryName(String laundryName) {
         this.laundryName = laundryName;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 }
