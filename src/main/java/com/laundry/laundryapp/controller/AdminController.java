@@ -27,4 +27,8 @@ public class AdminController {
         return  adminService.addAdminUser(admin);
     }
 
+    @GetMapping("/admin-all")
+    public  List getAdmins () throws ExecutionException, InterruptedException {
+        return adminService.getAdmins();
+    }
 }

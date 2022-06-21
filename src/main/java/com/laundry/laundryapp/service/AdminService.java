@@ -1,13 +1,11 @@
 package com.laundry.laundryapp.service;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.laundry.laundryapp.model.Admin;
 import com.laundry.laundryapp.model.AdminLoginModel;
+import com.laundry.laundryapp.model.Laundry;
 import com.laundry.laundryapp.response.AdminResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -45,7 +43,7 @@ public class AdminService {
         if(document.exists()){
             Admin adminData =  document.toObject(Admin.class);
             if(passwordEncoder.matches(adminLoginModel.getPassword() ,adminData.getAdminPassword())){
-                adminInfo.add(new AdminResponse(adminData.getAdminUser(), adminData.getAdminUserName(),adminData.getAdminUserEmail()));
+                adminInfo.add(new AdminResponse(adminData.getAdminUserName(),adminData.getAdminUserEmail(), adminData.getContact()));
                 return adminInfo;
             }else{
                 return  "Authentication failed";
@@ -56,16 +54,15 @@ public class AdminService {
         }
     }
 
-//    public Object getUser(String user_id) throws ExecutionException, InterruptedException {
-//        Firestore db = FirestoreClient.getFirestore();
-//        DocumentReference documentReference = db.collection("users").document(user_id);
-//        ApiFuture<DocumentSnapshot> query = documentReference.get();
-//        DocumentSnapshot document = query.get();
-//        if(document.exists()){
-//            return document.toObject(UserResponse.class);
-//        }
-//        else {
-//            return ("No record found");
-//        }
-//    }
+    public List getAdmins() throws ExecutionException, InterruptedException {
+        List<AdminResponse> response = new ArrayList<>();
+        Firestore db = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> query = db.collection("admin").get();
+        QuerySnapshot querySnapshot = query.get();
+        List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
+        for (QueryDocumentSnapshot data : documents){
+            response.add(data.toObject(AdminResponse.class));
+        }
+        return response;
+    }
 }

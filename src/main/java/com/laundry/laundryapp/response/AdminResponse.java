@@ -2,25 +2,17 @@ package com.laundry.laundryapp.response;
 
 public class AdminResponse {
 
-    private String adminUser;
     private String adminUserName;
     private  String adminUserEmail;
+    private  String contact;
 
     public AdminResponse() {
     }
 
-    public AdminResponse(String adminUser, String adminUserName, String adminUserEmail) {
-        this.adminUser = adminUser;
+    public AdminResponse(String adminUserName, String adminUserEmail, String contact) {
         this.adminUserName = adminUserName;
         this.adminUserEmail = adminUserEmail;
-    }
-
-    public String getAdminUser() {
-        return adminUser;
-    }
-
-    public void setAdminUser(String adminUser) {
-        this.adminUser = adminUser;
+        this.contact = contact;
     }
 
     public String getAdminUserName() {
@@ -39,12 +31,20 @@ public class AdminResponse {
         this.adminUserEmail = adminUserEmail;
     }
 
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
     @Override
     public String toString() {
-        return "Admin{" +
-                "adminUser='" + adminUser + '\'' +
-                ", adminUserName='" + adminUserName + '\'' +
+        return "AdminResponse{" +
+                "adminUserName='" + adminUserName + '\'' +
                 ", adminUserEmail='" + adminUserEmail + '\'' +
+                ", contact='" + contact + '\'' +
                 '}';
     }
 }

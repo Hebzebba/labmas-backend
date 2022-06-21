@@ -1,28 +1,21 @@
 package com.laundry.laundryapp.model;
 
 public class Admin {
-
-    private String adminUser;
     private String adminUserName;
     private  String adminUserEmail;
+
+    private  String contact;
     private String adminPassword;
+
 
     public Admin() {
     }
 
-    public Admin(String adminUser, String adminUserName, String adminUserEmail, String adminPassword) {
-        this.adminUser = adminUser;
+    public Admin(String adminUserName, String adminUserEmail, String contact, String adminPassword) {
         this.adminUserName = adminUserName;
         this.adminUserEmail = adminUserEmail;
+        this.contact = contact;
         this.adminPassword = adminPassword;
-    }
-
-    public String getAdminUser() {
-        return adminUser;
-    }
-
-    public void setAdminUser(String adminUser) {
-        this.adminUser = adminUser;
     }
 
     public String getAdminUserName() {
@@ -49,12 +42,20 @@ public class Admin {
         this.adminPassword = adminPassword;
     }
 
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
     @Override
     public String toString() {
         return "Admin{" +
-                "adminUser='" + adminUser + '\'' +
-                ", adminUserName='" + adminUserName + '\'' +
+                "adminUserName='" + adminUserName + '\'' +
                 ", adminUserEmail='" + adminUserEmail + '\'' +
+                ", contact='" + contact + '\'' +
                 ", adminPassword='" + adminPassword + '\'' +
                 '}';
     }
