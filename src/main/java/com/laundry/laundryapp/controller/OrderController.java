@@ -34,4 +34,9 @@ public class OrderController {
     public List deleteOrder(@RequestParam String email) throws ExecutionException, InterruptedException {
         return orderService.deleteOrder(email);
     }
+
+    @GetMapping("/updateState")
+    public String updateOrderState(@RequestParam String email, boolean state) throws ExecutionException, InterruptedException {
+        return orderService.updateOrderState(email,state);
+    }
 }

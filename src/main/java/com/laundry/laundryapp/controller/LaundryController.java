@@ -1,6 +1,7 @@
 package com.laundry.laundryapp.controller;
 
 import com.laundry.laundryapp.model.Laundry;
+import com.laundry.laundryapp.model.LaundryOwner;
 import com.laundry.laundryapp.service.LaundryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,11 @@ public class LaundryController {
     @PostMapping("/owner/register")
     public List order(@RequestBody Laundry laundry) throws ExecutionException, InterruptedException {
         return laundryService.addOwner(laundry);
+    }
+
+    @PutMapping("/owner/update")
+    public List updateLaundryOwnerData (@RequestBody Laundry laundryOwner) throws ExecutionException, InterruptedException, IllegalAccessException {
+        return  laundryService.updateLaundryOwnerData(laundryOwner);
     }
 
     @DeleteMapping("/owner/delete")

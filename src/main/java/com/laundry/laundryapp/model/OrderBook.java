@@ -6,16 +6,18 @@ public class OrderBook {
     private String laundryType;
     private String telephoneNumber;
     private String email;
+    private boolean status;
 
     public OrderBook() {
     }
 
-    public OrderBook(String user_name, String date, String laundryType, String telephoneNumber, String email) {
+    public OrderBook(String user_name, String date, String laundryType, String telephoneNumber, String email, boolean status) {
         this.user_name = user_name;
         this.date = date;
         this.laundryType = laundryType;
         this.telephoneNumber = telephoneNumber;
         this.email = email;
+        this.status = status;
     }
 
     public String getUser_name() {
@@ -58,14 +60,23 @@ public class OrderBook {
         this.email = email;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "OrderBook{" +
-                "name='" + user_name + '\'' +
+                "user_name='" + user_name + '\'' +
                 ", date='" + date + '\'' +
                 ", laundryType='" + laundryType + '\'' +
-                ", laundryType='" + telephoneNumber + '\'' +
-                ", telephoneNumber=" + email +
+                ", telephoneNumber='" + telephoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

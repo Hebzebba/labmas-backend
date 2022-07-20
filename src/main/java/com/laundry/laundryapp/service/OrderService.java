@@ -60,4 +60,12 @@ public class OrderService {
         response.add(query.get().getUpdateTime().toString());
         return response;
     }
+
+    public String updateOrderState(String email, boolean state) throws ExecutionException, InterruptedException {
+        Firestore db = FirestoreClient.getFirestore();
+        DocumentReference docRef = db.collection("orders").document(email);
+        ApiFuture<WriteResult> future = docRef.update("state", state);
+        System.out.println("Write result: " + future.get().toString());
+        return  "Order state updated";
+    }
 }
