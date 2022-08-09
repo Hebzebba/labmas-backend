@@ -1,6 +1,7 @@
 package com.laundry.laundryapp.controller;
 
 import com.laundry.laundryapp.model.Laundry;
+import com.laundry.laundryapp.model.LaundryDataToUpdate;
 import com.laundry.laundryapp.model.LaundryOwner;
 import com.laundry.laundryapp.service.LaundryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class LaundryController {
     }
 
     @PutMapping("/owner/update")
-    public List updateLaundryOwnerData (@RequestBody Laundry laundryOwner) throws ExecutionException, InterruptedException, IllegalAccessException {
+    public List updateLaundryOwnerData (@RequestBody LaundryDataToUpdate laundryOwner) throws ExecutionException, InterruptedException, IllegalAccessException {
         return  laundryService.updateLaundryOwnerData(laundryOwner);
     }
 

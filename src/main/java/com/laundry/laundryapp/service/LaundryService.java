@@ -5,6 +5,7 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.protobuf.Api;
 import com.laundry.laundryapp.model.Laundry;
+import com.laundry.laundryapp.model.LaundryDataToUpdate;
 import com.laundry.laundryapp.model.LaundryOwner;
 import com.laundry.laundryapp.response.LaundryDataResponse;
 import com.sun.tools.jconsole.JConsoleContext;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -55,18 +57,16 @@ public class LaundryService {
         return response;
     }
 
-    public  List updateLaundryOwnerData(Laundry laundry ) throws ExecutionException, InterruptedException, IllegalAccessException {
+    public  List updateLaundryOwnerData(LaundryDataToUpdate laundry ) throws ExecutionException, InterruptedException, IllegalAccessException {
         String email = laundry.getEmail();
         Firestore db = FirestoreClient.getFirestore();
         HashMap <String, Object> update = new HashMap<>();
         DocumentReference documentReference = db.collection("laundry").document(email);
 
-        Field[] fields = Laundry.class.getFields();
+        Field[] fields = LaundryDataToUpdate.class.getDeclaredFields();
         for( int i = 0; i < fields.length; i++){
             Object value = fields[i].get(laundry);
-
-                update.put(fields[i].getName(), value);
-                System.out.println(value);
+            update.put(fields[i].getName(), value);
         }
         ApiFuture<WriteResult> resultApiFuture = documentReference.set(update, SetOptions.merge());
         List<String> response = new ArrayList<>();

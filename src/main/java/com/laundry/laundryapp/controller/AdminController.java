@@ -2,6 +2,7 @@ package com.laundry.laundryapp.controller;
 
 import com.laundry.laundryapp.model.Admin;
 import com.laundry.laundryapp.model.AdminLoginModel;
+import com.laundry.laundryapp.model.LaundryDataToUpdate;
 import com.laundry.laundryapp.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +24,22 @@ public class AdminController {
     }
 
     @PostMapping("/admin-add")
-    public List addAdminUser(Admin admin) throws ExecutionException, InterruptedException {
+    public List addAdminUser(@RequestBody Admin admin){
         return  adminService.addAdminUser(admin);
     }
 
     @GetMapping("/admin-all")
     public  List getAdmins () throws ExecutionException, InterruptedException {
         return adminService.getAdmins();
+    }
+
+    @PutMapping("/admin/update")
+    public List updateLaundryOwnerData (@RequestBody Admin admin) throws ExecutionException, InterruptedException, IllegalAccessException {
+        return  adminService.updateAdminInfo(admin);
+    }
+
+    @DeleteMapping("/admin/delete")
+    public List deleteOrder(@RequestParam String email) throws ExecutionException, InterruptedException {
+        return adminService.deleteAdmin(email);
     }
 }

@@ -9,13 +9,6 @@ public class LaundryDataResponse {
     public LaundryDataResponse() {
     }
 
-    public LaundryDataResponse(String laundryName, double locationLongitude, double latitude, String info) {
-        this.laundryName = laundryName;
-        this.longitude = locationLongitude;
-        this.latitude = latitude;
-        this.info = info;
-    }
-
     public String getLaundryName() {
         return laundryName;
     }
@@ -52,8 +45,8 @@ public class LaundryDataResponse {
     public String toString() {
         return "LaundryDataResponse{" +
                 "laundryName='" + laundryName + '\'' +
-                ", locationLongitude=" + longitude +
-                ", locationLatitude=" + latitude +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
                 ", info='" + info + '\'' +
                 '}';
     }
